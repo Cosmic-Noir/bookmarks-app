@@ -30,6 +30,7 @@ export default class EditBookmark extends Component {
     const { bookmarkId } = this.props.match.params;
     const { id, title, url, description, rating } = this.state;
     const newBookmark = { id, title, url, description, rating };
+    console.log(config.API_ENDPOINT + `/${bookmarkId}`);
     fetch(config.API_ENDPOINT + `/${bookmarkId}`, {
       method: "PATCH",
       body: JSON.stringify(newBookmark),
@@ -37,10 +38,14 @@ export default class EditBookmark extends Component {
         "content-type": "application/json"
       }
     })
+      .then(res => {
+        if (!res.ok) return res.json().then(error => Promise.reject(error));
+      })
       .then(() => {
         this.resetFields(newBookmark);
         this.context.updateBookmark(newBookmark);
         this.props.history.push("/");
+        console.log("Fetch call made");
       })
       .catch(error => {
         console.error(error);
@@ -81,7 +86,6 @@ export default class EditBookmark extends Component {
   // Lifecycle methods
   componentDidMount() {
     const { bookmarkId } = this.props.match.params;
-    console.log(config.API_ENDPOINT + `/${bookmarkId}`);
 
     fetch(config.API_ENDPOINT + `/${bookmarkId}`, {
       method: "GET",

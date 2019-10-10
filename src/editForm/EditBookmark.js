@@ -43,7 +43,7 @@ class EditBookmark extends Component {
         if (!res.ok) return res.json().then(error => Promise.reject(error));
       })
       .then(() => {
-        console.log("Fetch call made");
+        console.log("Patch request sent, res 204");
         this.context.updateBookmark(newBookmark);
         this.resetFields(newBookmark);
         this.props.history.push("/");

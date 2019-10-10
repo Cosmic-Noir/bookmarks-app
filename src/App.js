@@ -31,16 +31,17 @@ class App extends Component {
     const newBookmarks = this.state.bookmarks.filter(
       bm => bm.id !== bookmarkId
     );
-    this.setState({ bookmarks: newBookmarks });
+    this.setState({ newBookmarks });
+    console.log("DELETE is called");
   };
 
   updateBookmark = updatedBookmark => {
-    const newBookmarks = this.state.bookmarks.map(bookmark =>
-      bookmark.id === updatedBookmark ? updatedBookmark : bookmark
-    );
     this.setState({
-      bookmarks: newBookmarks
+      bookmarks: this.state.bookmarks.map(bookmark =>
+        bookmark.id !== updatedBookmark.id ? bookmark : updatedBookmark
+      )
     });
+    console.log("updateBookmark called");
   };
 
   componentDidMount() {

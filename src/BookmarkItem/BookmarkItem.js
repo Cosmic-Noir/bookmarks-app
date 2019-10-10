@@ -7,29 +7,29 @@ import { Link } from "react-router-dom";
 
 import "./BookmarkItem.css";
 
-function deleteBookmarkRequest(bookmarkId, callback) {
-  fetch(config.API_ENDPOINT + `/${bookmarkId}`, {
-    method: "DELETE",
-    headers: {
-      "content-type": "applicaiton/json",
-      authorization: `bearer ${config.API_KEY}`
-    }
-  })
-    .then(res => {
-      if (!res.ok) {
-        return res.json().then(error => Promise.reject(error));
-      }
-      return res.json();
-    })
-    .then(data => {
-      callback(bookmarkId);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-}
-
 export default function BookmarkItem(props) {
+  function deleteBookmarkRequest(bookmarkId, callback) {
+    fetch(config.API_ENDPOINT + `/${bookmarkId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "applicaiton/json",
+        authorization: `bearer ${config.API_KEY}`
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => Promise.reject(error));
+        }
+      })
+      .then(data => {
+        callback(bookmarkId);
+        console.log("Delete req works");
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   return (
     <BookmarksContext.Consumer>
       {context => (

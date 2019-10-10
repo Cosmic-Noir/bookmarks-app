@@ -3,7 +3,7 @@ import BookmarksContext from "../BookmarksContext";
 import PropTypes from "prop-types";
 import config from "../config";
 
-export default class EditBookmark extends Component {
+class EditBookmark extends Component {
   static propTypes = {
     match: PropTypes.shape({
       params: PropTypes.object
@@ -35,17 +35,18 @@ export default class EditBookmark extends Component {
       method: "PATCH",
       body: JSON.stringify(newBookmark),
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        Authorization: `Bearer ${config.API_KEY}`
       }
     })
       .then(res => {
         if (!res.ok) return res.json().then(error => Promise.reject(error));
       })
       .then(() => {
-        this.resetFields(newBookmark);
-        this.context.updateBookmark(newBookmark);
-        this.props.history.push("/");
         console.log("Fetch call made");
+        this.context.updateBookmark(newBookmark);
+        this.resetFields(newBookmark);
+        this.props.history.push("/");
       })
       .catch(error => {
         console.error(error);
@@ -165,3 +166,5 @@ export default class EditBookmark extends Component {
     );
   }
 }
+
+export default EditBookmark;

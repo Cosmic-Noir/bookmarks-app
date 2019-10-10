@@ -75,7 +75,7 @@ class App extends Component {
           <Nav />
           <div className="content" aria-live="polite">
             <Route path="/add-bookmark" component={AddBookmark} />
-            <Route path="/edit/:articleId" component={EditBookmark} />
+            <Route path="/edit/:bookmarkId" component={EditBookmark} />
             <Route exact path="/" component={BookmarkList} />
           </div>
         </BookmarksContext.Provider>

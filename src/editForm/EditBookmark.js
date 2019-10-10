@@ -98,7 +98,7 @@ class EditBookmark extends Component {
         if (!res.ok) {
           return res.json().then(error => Promise.reject(error));
         }
-        return res.json;
+        return res.json();
       })
       .then(res => {
         this.setState({
@@ -115,7 +115,6 @@ class EditBookmark extends Component {
   }
 
   render() {
-    const { title, url, description, rating } = this.state;
     return (
       <section className="EditBookmarkForm">
         <h2>Edit Bookmark</h2>
@@ -127,7 +126,7 @@ class EditBookmark extends Component {
             name="title"
             id="title"
             required
-            value={title}
+            value={this.state.title}
             onChange={this.handleChangeTitle}
           />
           <label htmlFor="url">Url </label>
@@ -136,14 +135,14 @@ class EditBookmark extends Component {
             name="url"
             id="url"
             required
-            value={url}
+            value={this.state.url}
             onChange={this.handleChangeUrl}
           />
           <label htmlFor="description">Description</label>
           <textarea
             name="description"
             id="description"
-            value={description}
+            value={this.state.description}
             onChange={this.handleChangeDescription}
           />
           <label htmlFor="rating">Rating </label>
@@ -154,7 +153,7 @@ class EditBookmark extends Component {
             min="1"
             max="5"
             required
-            value={rating}
+            value={this.state.rating}
             onChange={this.handleChangeRating}
           />
           <button type="button" onClick={this.handleClickCancel}>

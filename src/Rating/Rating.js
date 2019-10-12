@@ -25,11 +25,11 @@ Rating.propTypes = {
     }
 
     // the prop has a value let's check the type
-    if (typeof prop != "number") {
-      return new Error(
-        `Invalid prop, ${propName} is expected to be a number in ${componentName}. ${typeof prop} found.`
-      );
-    }
+    // if (typeof prop != "number") {
+    //   return new Error(
+    //     `Invalid prop, ${propName} is expected to be a number in ${componentName}. ${typeof prop} found.`
+    //   );
+    // }
 
     // the prop is a number let us check the range
     if (prop < 1 || prop > 5) {

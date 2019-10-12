@@ -30,7 +30,7 @@ class EditBookmark extends Component {
     const { bookmarkId } = this.props.match.params;
     const { id, title, url, description, rating } = this.state;
     const newBookmark = { id, title, url, description, rating };
-    console.log(config.API_ENDPOINT + `/${bookmarkId}`);
+    // console.log(config.API_ENDPOINT + `/${bookmarkId}`);
     fetch(config.API_ENDPOINT + `/${bookmarkId}`, {
       method: "PATCH",
       body: JSON.stringify(newBookmark),
@@ -43,7 +43,7 @@ class EditBookmark extends Component {
         if (!res.ok) return res.json().then(error => Promise.reject(error));
       })
       .then(() => {
-        console.log("Patch request sent, res 204");
+        // console.log("Patch request sent, res 204");
         this.context.updateBookmark(newBookmark);
         this.resetFields(newBookmark);
         this.props.history.push("/");

@@ -69,7 +69,6 @@ class App extends Component {
 
     // console.log(updatedBookmark);
     // console.log(this.state.bookmarks);
-    // this.setState({ extra: "not really" });
     // this.setState({
     //   bookmarks: this.state.bookmarks.map(bookmark =>
     //     bookmark.id !== updatedBookmark.id ? bookmark : updatedBookmark

@@ -28,54 +28,21 @@ class App extends Component {
   };
 
   deleteBookmark = bookmarkId => {
-    fetch(config.API_ENDPOINT, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${config.API_KEY}`
-      }
-    })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(res.status);
-        }
-        return res.json();
-      })
-      .then(this.setBookmarks)
-      .catch(error => this.setState({ error }));
-    // const newBookmarks = this.state.bookmarks.filter(
-    //   bm => bm.id !== bookmarkId
-    // );
-    // this.setState({ newBookmarks });
-    // console.log("DELETE is called");
+    const newBookmarks = this.state.bookmarks.filter(
+      bm => bm.id !== bookmarkId
+    );
+    this.setState({
+      bookmarks: newBookmarks
+    });
+    console.log("DELETE is called");
   };
 
   updateBookmark = updatedBookmark => {
-    fetch(config.API_ENDPOINT, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${config.API_KEY}`
-      }
-    })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(res.status);
-        }
-        return res.json();
-      })
-      .then(this.setBookmarks)
-      .catch(error => this.setState({ error }));
-
-    // console.log(updatedBookmark);
-    // console.log(this.state.bookmarks);
-    // this.setState({
-    //   bookmarks: this.state.bookmarks.map(bookmark =>
-    //     bookmark.id !== updatedBookmark.id ? bookmark : updatedBookmark
-    //   )
-    // });
-    // console.log(this.state.bookmarks);
-    // console.log("updateBookmark called");
+    this.setState({
+      bookmarks: this.state.bookmarks.map(bookmark =>
+        bookmark.id !== updatedBookmark.id ? bookmark : updatedBookmark
+      )
+    });
   };
 
   componentDidMount() {
